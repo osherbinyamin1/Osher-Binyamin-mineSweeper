@@ -6,10 +6,16 @@ body {
     background-color : grey;
 }
 
+.timer {
+    margin: auto;
+    width: 70px;
+    height: 70px;
+    font-size:xx-large
+}
 
 .table {
     margin: auto;
-    margin-top: 70px;
+    margin-top: 30px;
     background-color : white
 }
 
