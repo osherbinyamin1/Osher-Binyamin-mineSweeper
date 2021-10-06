@@ -19,7 +19,6 @@ function initGame() {
         minsPassed: 0,
     };
     gBoard = buildBoard(gLevel.size);
-    console.table(gBoard);
     renderBoard(gBoard, '.board-container');
 }
 
