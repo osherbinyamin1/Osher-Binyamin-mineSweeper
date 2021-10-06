@@ -35,3 +35,34 @@ function getRandomColor() {
     var b = Math.floor(Math.random() * 256);
     return 'rgb(' + r + ',' + g + ',' + b + ')';
 }
+
+function startTimer() {
+    var elTimer = document.querySelector('.timer');
+    var startTime = Date.now();
+
+    gInterval = setInterval(function () {
+        var time = new Date();
+        var timeDiff = time - startTime;
+        var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        elTimer.innerText = `Time: ${++gGame.secsPassed}`;
+    }, 1000);
+}
+
+
+// function restartGame() {
+//     gScore = 0;
+//     gGeneratedBalls = 2;
+//     gInterval = 0;
+//     gIntervalGlue = 0;
+//     // var elScoreCount = document.querySelector('h2 span');
+//     var elRestartBtn = document.querySelector('.restart');
+//     elRestartBtn.style.display = 'none';
+//     // elScoreCount.innerText = `Congrats! You Collected ${gScore} Balls`;
+//     // document.querySelector('h2 span').innerText = `Congrats! You Collected ${gScore} Balls`;
+//     initGame();
+// }
