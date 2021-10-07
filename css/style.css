@@ -1,55 +1,89 @@
-* {
-    text-align: center;
+*{
+    font-family:'Courier New', Courier, monospace;
 }
 
-
 body {
-    background-image: url('/img/battle.jpg');
+    text-align: center;
+    background-image: url('../img/battle.JPG');
     background-size: cover;
 }
 
-h1 { 
-    background-image: url('/img/background.png');
+h1 {
+    background-image: url('../img/background.PNG');
     background-position: 100%;
-    color:wheat;
-} 
-
-h3 {
-    color : white;
+    color: rgb(255, 224, 166);
 }
+
+h2 {
+    background-color: darkgray;
+    color: rgba(0, 0, 0, 0.787);
+    width: 500px;
+    margin:20px auto;
+}
+
 .level-btns {
     display: inline-block;
-    margin-right: 100px;
+    margin-right:50px;
 }
 
-.timer {
-    margin: auto;
-    margin-top: 15px;
-    margin-left: 100px;
-    width: 70px;
-    height: 70px;
-    font-size: 30px;
-    display:inline-block;
+h3 {
+    color: white;
 }
 
 .table {
-    margin: auto;
-    margin-top: 25px;
-    background-color : white
+    display: inline-block;
+    margin: 0 auto;
+    border: 3px solid white;
+    border-radius: 15px;
+    width: 114px;
+    height: 58px;
+    font-size: 17px;
+    padding:3px;
 }
 
+.smiley {
+    cursor: pointer;
+}
+
+.mines {
+    display: inline-block;
+    color: rgb(255, 0, 0);
+    width: 55px;
+    margin-left: 2px;
+}
+
+.timer {
+    display: inline-block;
+    color: rgb(55, 204, 42);
+    background-color: rgba(65, 39, 39, 0.712);
+    width: 85px;
+    height: 64px;
+    padding: 7px;
+    margin-bottom: 7px;
+    margin-right: 84px;
+    margin-left: 70px;
+    font-size: 30px;
+}
+
+.game-table {
+    margin: 0 auto;
+    background-color: white;
+}
 
 .cell {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     font-size: 20px;
 }
 
-footer{
-    background-color: #156c94ad;
+
+footer {
     color: white;
-    width: 150px;
-    margin: auto;
-    margin-top: 5px;
-  
+    background-color: rgb(32, 58, 100);
+    margin: left;
+    margin-top: 35px;
+    width: 230px;
+    padding: 3px;
+    bottom:0;
+    font-family:'Times New Roman', Times, serif
 }
