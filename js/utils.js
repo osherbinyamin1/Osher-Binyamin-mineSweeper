@@ -11,13 +11,13 @@ function renderBoard(board, selector) {
         strHTML += '</tr>';
     }
     strHTML += '</tbody></table>';
+    gElMines.innerText = `${gMines}${FLAG}`;
 
     var elContainer = document.querySelector(selector);
     elContainer.innerHTML = strHTML;
-    gElMines.innerText = `${gMines} ${FLAG} `;
-
-    const elBoard = document.querySelector('.board-container');
-    elBoard.addEventListener('contextmenu', (event) => {
+    
+    
+    gElBoard.addEventListener('contextmenu', (event) => {
         event.preventDefault();}); //prevent right click
     
 }
@@ -39,10 +39,10 @@ function startTimer() {
     }, 1000);
 }
 
-function getRandomInt(min, max) {
+function getRandomInt(min, max) { //minimum and maximum inclusive
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 // location such as: {i: 2, j: 7}

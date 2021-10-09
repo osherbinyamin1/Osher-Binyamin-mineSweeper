@@ -17,6 +17,7 @@ var gElHeart3 = document.querySelector('.heart3');
 var gHeader2 = document.querySelector('h2');
 var gSmiley = document.querySelector('.smiley');
 var gElMines = document.querySelector('.mines');
+const gElBoard = document.querySelector('.board-container');
 
 function initGame() {
     clearInterval(gInterval);
@@ -30,9 +31,9 @@ function initGame() {
     };
     gGame.isOn = true;
     gHeader2.innerText = 'LET\'S PLAY IN THE BATTLEFIELD';
-    gElHeart1.innerText = HEART;
+    gElHeart1.innerText = (gLevel.size === 4) ? '' : HEART;
     gElHeart2.innerText = HEART;
-    gElHeart3.innerText = HEART;
+    gElHeart3.innerText = (gLevel.size === 4) ? '' : HEART;
     gMines = gLevel.mines;
     gBoard = buildBoard(gLevel.size);
     renderBoard(gBoard, '.board-container');
@@ -94,12 +95,11 @@ function cellClicked(elCell, i, j) {
         else elCell.innerText = gBoard[i][j].minesAroundCount;
 
         elCell.style.backgroundColor = 'lightblue';
+        if (checkGameOver()) resetGame(true);
     } else {
         gBoard[i][j].isShown = true;
         elCell.innerText = MINE;
         elCell.style.backgroundColor = 'red';
-        clearInterval(gInterval);
-        gInterval = null;
         lifeDecreaser(elCell);
     }
 }
@@ -107,8 +107,6 @@ function cellClicked(elCell, i, j) {
 function resetGame(isItWin) {
     if (!gGame.isOn) return;
 
-    gHeader2.innerText = isItWin ? 'Congrats Champ' : 'You Lost - HAHAHAHA';
-    gSmiley.innerText = isItWin ? '😎' : '🤯';
     if (!isItWin) {
         for (var i = 0; i < gBoard.length; i++) {
             for (var j = 0; j < gBoard[0].length; j++) {
@@ -120,6 +118,10 @@ function resetGame(isItWin) {
         }
     }
 
+    gHeader2.innerText = isItWin ? 'Congrats Champ' : 'Game over, try again';
+    gSmiley.innerText = isItWin ? '😎' : '🤯';
+    
+
     //Define new game
     gGame = {
         isOn: false,
@@ -127,7 +129,8 @@ function resetGame(isItWin) {
         markedCount: 0,
         secsPassed: 0,
     };
-    //stop the timer
+
+    //stop the timer 
     clearInterval(gInterval);
     gInterval = null;
 }
@@ -163,7 +166,6 @@ function expandShown(board, i, j) {
     }
 }
 
-//  respond to a rightclick on a cell
 function cellMarked(elCell, i, j) {
     if (gBoard[i][j].isShown) return;
     if (gMines === 0) return;
@@ -180,6 +182,7 @@ function cellMarked(elCell, i, j) {
             gGame.markedCount++;
             gBoard.isShown = true;
         }
+        
 
     } else {
         if (gBoard[i][j].isMine) gGame.markedCount--;
@@ -192,7 +195,6 @@ function cellMarked(elCell, i, j) {
         gElMines.innerText = `${gMines}${FLAG}`;
 
     }
-
     if (checkGameOver()) resetGame(true);
 }
 
@@ -215,6 +217,6 @@ function lifeDecreaser() {
 }
 
 function checkGameOver() {
-    if (gGame.shownCount === gLevel.size ** 2 && gGame.markedCount === gLevel.mines) return true;
+    if (gGame.shownCount === (gLevel.size * gLevel.size) - gLevel.mines && gGame.markedCount === gLevel.mines) return true;
     else return false;
 }
